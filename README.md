@@ -26,6 +26,15 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Assignment explanation
+
+every 12 seconds (5 times per minute), we are fetching new data from the transaction API. The data are mocked. These are the possible values for the user ids and types.
+
+```javascript
+const userIds = ['1', '2', '3', '4', '5'];
+const types = ['balance', 'payout', 'spent', 'earned'];
+```
+
 ## Project setup
 
 ```bash
@@ -41,21 +50,36 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 
-# production mode
+# production mode (not tested)
 $ npm run start:prod
 ```
 
 ## Run tests
 
 ```bash
-# unit tests
+# unit tests (works)
 $ npm run test
 
-# e2e tests
+# e2e tests (not implemented)
 $ npm run test:e2e
 
-# test coverage
+# test coverage (not implemented)
 $ npm run test:cov
+```
+
+## Endpoints
+
+```bash
+# Get list of users with aggregated payouts
+[GET] http://localhost:3000/getListOfRequestedPayouts
+```
+
+```bash
+# Get aggregated results for a user
+[GET] http://localhost:3000/getAggregatedDataByUserId/<userId>
+
+ex.
+[GET] http://localhost:3000/getAggregatedDataByUserId/5
 ```
 
 ## Resources
