@@ -1,6 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
-import { IPayoutReport } from './types/app.types';
+import { IPayoutReport, IUserReport } from './types/app.types';
 import { Cron } from '@nestjs/schedule';
 
 @Controller()
@@ -13,14 +13,13 @@ export class AppController {
   }
 
   @Get('getAggregatedDataByUserId/:userId')
-  getAggregatedDataByUserId(@Param('userId') userId: string): string {
-    return JSON.stringify(this.appService.getAggregatedDataByUserId(userId));
+  getAggregatedDataByUserId(@Param('userId') userId: string): IUserReport {
+    return this.appService.getAggregatedDataByUserId(userId);
   }
 
   @Get('getListOfRequestedPayouts')
   getListOfRequestedPayouts(): IPayoutReport {
-    var result = this.appService.getListOfRequestedPayouts();
-    return result;
+    return this.appService.getListOfRequestedPayouts();
   }
 
   // Method to fetch data from external API
